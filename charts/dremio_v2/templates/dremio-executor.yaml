@@ -111,7 +111,7 @@ spec:
   - metadata:
       name: {{ template "dremio.executor.volumeClaimName" (list $ $engineName) }}
     spec:
-      accessModes: ["ReadWriteOnce"]
+      {{- include "dremio.executor.accessModes" (list $ $engineName) | nindent 6 }}
       {{- include "dremio.executor.storageClass" (list $ $engineName) | nindent 6 }}
       resources:
         requests:
